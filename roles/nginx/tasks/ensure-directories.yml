@@ -1,0 +1,22 @@
+---
+- name: Create the directories for site specific configurations
+  file:
+    path: "/etc/nginx/{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - "sites-available"
+    - "sites-enabled"
+    - "conf.d"
+    - "modules-available"
+    - "modules-enabled"
+
+- name: Ensure log directory exist
+  file:
+    path: "/var/log/nginx"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755

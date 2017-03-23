@@ -1,0 +1,38 @@
+---
+- name: Clone/Update from github
+  git: 
+    repo: https://github.com/lukas2511/dehydrated.git
+    dest: /opt/dehydrated.sh
+
+- name: letsencrypt DNS job
+  cron:
+    name: letsencrypt DNS job
+    minute: "1"
+    hour: "1"
+    job: 'date >> /var/log/dehydrated.log && /opt/letsencrypt.sh/letsencrypt.sh -c -k /opt/letsencrypt.sh/http.net_hook.sh >> /var/log/letsencrypt.log 2>&1'
+    state: present
+
+- name: letsencrypt HTTP job
+  cron:
+    name: letsencrypt HTTP job
+    minute: "2"
+    hour: "2"
+    job: 'date >> /var/log/dehydrated.log && /opt/letsencrypt.sh/letsencrypt.sh -c -k /opt/letsencrypt.sh/hook_nginx.sh >> /var/log/letsencrypt.log 2>&1'
+
+- name: directory for acme challenge
+  become: yes
+  file:
+    state: directory
+    path: /etc/ssl/letsencrypt
+
+- name: create domains.txt
+  become: yes
+  template:
+    src: domains.j2
+    dest: /etc/ssl/domains.txt
+
+- name: create config.sh
+  become: yes
+  template:
+    src: config.sh
+    dest: /opt/dehydrated.sh/config.sh

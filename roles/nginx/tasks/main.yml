@@ -1,0 +1,33 @@
+---
+- include: install.yml
+- include: ensure-directories.yml
+
+- name: Copy nginx.conf
+  template:
+    src: "nginx.conf.j2"
+    dest: "/etc/nginx/nginx.conf"
+    mode: 0644
+  notify:
+    - restart nginx
+
+- name: "[Nginx Provisioning] Create the configuration file for vHosts"
+  template:
+    src: "vhosts/{{ item }}"
+    dest: /etc/nginx/sites-available/{{ item | basename | regex_replace('\.j2','') }}
+    mode: 0644
+  with_items:
+    - "{{ vhosts }}"
+  notify:
+    - reload nginx
+
+
+- name: Generate dhparam file
+  # -dsaparm => https://goo.gl/OkbDqi for faster generation
+  command: openssl dhparam -dsaparam -out /etc/ssl/dhparam.pem 4096 creates=/etc/ssl/dhparam.pem
+
+- name: Remove default nginx configuration 
+  file: 
+    path: /etc/nginx/sites-enabled/default 
+    state: absent 
+  notify: restart nginx 
+

@@ -1,0 +1,26 @@
+--- 
+hostname: 'twix.ctnguyen.net'
+locale: 
+  - de_DE.UTF-8
+  - en_GB.UTF-8
+locale_lang: en_GB.UTF-8
+locale_time: de_DE.UTF-8
+
+language: 'de_DE:en'
+timezone: 'Europe/Berlin'
+ntp_server: 'pool.ntp.org'
+
+vhosts:
+  - ctnguyen.net.j2
+
+packages:
+  - vim
+  - screen
+  - git
+  - qemu
+  - libvirt-bin
+  - htop
+  - mosh
+  - curl
+  - vnstat
+  - sudo

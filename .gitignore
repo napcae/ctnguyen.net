@@ -1,0 +1,5 @@
+*.todo
+.vagrant
+*.retry
+.vault_password
+todo

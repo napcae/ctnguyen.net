@@ -1,0 +1,35 @@
+---
+- name: Add or update user and set password
+  user:
+    name: "{{ username }}" 
+    password: "{{ password |  password_hash('sha512') }}"
+    shell: /bin/bash
+    update_password: on_create
+
+- name: Change user directory permissions to 750
+  file: 
+    path: "/home/{{ username }}" 
+    state: directory
+    mode: 0750
+
+- name: Add or udpate authorized key
+  authorized_key: 
+    user: "{{ username }}" 
+    key: "{{ lookup('file', id_rsa_path) }}"
+  when: id_rsa_path is defined
+
+- name: Add user to sudoers
+  lineinfile: 
+    dest: /etc/sudoers 
+    regexp: "{{ username }} ALL"
+    line: "{{ username }} ALL=(ALL) ALL" 
+    state: present  
+  when: sudoers == 'y' 
+
+- name: Remove user to sudoers
+  lineinfile: 
+    dest: /etc/sudoers 
+    regexp: "{{ username }} ALL" 
+    line: "{{ username }} ALL=(ALL) ALL" 
+    state: absent
+  when: sudoers == 'n' 

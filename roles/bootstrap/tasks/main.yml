@@ -1,0 +1,15 @@
+---
+- include: hostname.yml
+  tags: hostname
+
+- include: apt.yml
+  tags: apt
+
+- include: secure.yml
+  tags: secure
+
+- include: packages.yml
+  tags: packages
+
+- include: locale.yml  
+  tags: locale

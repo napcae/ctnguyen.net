@@ -1,0 +1,32 @@
+---
+- name: Install fail2ban
+  apt:
+    pkg: fail2ban 
+    state: installed
+
+- name: do not permit password authentication
+  lineinfile: 
+    dest: /etc/ssh/sshd_config 
+    regexp: "^PasswordAuthentication" 
+    line: "PasswordAuthentication no" 
+    state: present
+  notify: restart ssh
+
+- name: Disallow root SSH access
+  lineinfile: 
+    dest: /etc/ssh/sshd_config 
+    regexp: "^PermitRootLogin" 
+    line: "PermitRootLogin no" 
+    state: present
+  notify: restart ssh
+
+- name: Delete /etc/sudoers.d/ files
+  file: 
+    path: /etc/sudoers.d/* 
+    state: absent
+
+- name: Change root password
+  user: 
+    name: root 
+    password: "{{ ROOT_PASSWORD | password_hash('sha512') }}"
+    update_password: on_create

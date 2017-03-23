@@ -1,0 +1,17 @@
+---
+- name: Generate locale
+  locale_gen:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ locale }}"
+
+- name: set locale
+  become: yes
+  template: 
+    src: locale/default.j2 
+    dest: /etc/default/locale
+
+
+- name: Set Timezone
+  timezone:
+    name: "{{ timezone }}"

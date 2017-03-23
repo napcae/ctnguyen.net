@@ -1,0 +1,38 @@
+# {{ ansible_managed }}
+server {
+    listen 80;
+    server_name nettelbeckplatz.de www.nettelbeckplatz.de;
+
+    access_log /var/log/nginx/nettelbeckplatz.de/access.log;
+    error_log  /var/log/nginx/nettelbeckplatz.de/error.log;
+
+    #location /.well-known/acme-challenge {
+    #      alias /etc/ssl/letsencrypt;
+    #}
+    #return 301 https://$host$request_uri;
+
+        root   /var/web/nettelbeckplatz.de;
+        location / {
+        index  index.php index.html index.htm;
+    }
+
+#       location /playlists {
+#       autoindex on;
+#    }
+}
+server {
+    listen 80;
+    server_name cd.nettelbeckplatz.de;
+
+    return 301 https://etherpad.wikimedia.org/p/nettelbeckkracher65;
+
+    #ssl_certificate          /etc/ssl/certs/redirect.ctnguyen.net/fullchain.pem;
+    #ssl_certificate_key      /etc/ssl/certs/redirect.ctnguyen.net/piirivkey.pem;
+
+    #include /etc/nginx/ssl/secure.conf;
+
+    #add_header Strict-Transport-Security "max-age=63072000; includeSubdomains;  preload;";
+
+    #access_log            /var/log/nginx/redirect.ctnguyen.net.access.log;
+    #error_log             /var/log/nginx/redirect.ctnguyen.net.error.log;
+}
