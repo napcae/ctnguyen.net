@@ -1,0 +1,17 @@
+# Default configuration
+# ctnguyen as host
+# catch unmatched vhosts
+
+server {
+    listen 80;
+    server_name pay.ctnguyen.net pay.napcae.de;
+    
+    rewrite ^ $scheme://paypal.me/napcae;
+}
+
+#server {
+#    listen 8000 default_server;
+#    server_name _;
+#
+#    root /usr/local/nginx/html; 
+#}

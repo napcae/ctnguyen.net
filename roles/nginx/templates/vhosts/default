@@ -1,0 +1,29 @@
+# Default configuration
+# ctnguyen as host
+# catch unmatched vhosts
+
+server {
+    listen 80 default_server;
+    server_name _;
+
+    root /var/web/www/ctnguyen.net;
+
+    location / {
+        index index.html index.htm index.php;
+    }
+
+   location ~*  \.(jpg|jpeg|png|gif|ico|css|js)$ {
+        expires 365d;
+    }
+   
+   location ~*  \.(pdf)$ {
+        expires 30d;
+   } 
+}
+
+#server {
+#    listen 8000 default_server;
+#    server_name _;
+#
+#    root /usr/local/nginx/html; 
+#}

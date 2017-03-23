@@ -12,6 +12,13 @@ ntp_server: 'pool.ntp.org'
 
 vhosts:
   - ctnguyen.net.j2
+  - bot.ctnguyen.net.j2
+  - pay.ctnguyen.net.j2
+  - redirect.ctnguyen.net.j2
+  - music.ctnguyen.net.j2
+  - mail.sinistrabande.de.j2
+  - nettelbeckplatz.de.j2
+
 
 packages:
   - vim
@@ -24,3 +31,5 @@ packages:
   - curl
   - vnstat
   - sudo
+  - irssi
+  - iptables-persistent

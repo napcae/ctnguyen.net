@@ -20,3 +20,11 @@
     owner: root
     group: root
     mode: 0755
+
+- name: Ensure webroot exist
+  file:
+    path: "/var/web/www/"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: 0755

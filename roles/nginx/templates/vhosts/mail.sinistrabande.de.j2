@@ -1,0 +1,17 @@
+# Default configuration
+# ctnguyen as host
+# catch unmatched vhosts
+
+server {
+    listen 80;
+    server_name mail.sinistrabande.de;
+    
+    rewrite ^ $scheme://www.zoho.com/mail;
+}
+
+#server {
+#    listen 8000 default_server;
+#    server_name _;
+#
+#    root /usr/local/nginx/html; 
+#}
