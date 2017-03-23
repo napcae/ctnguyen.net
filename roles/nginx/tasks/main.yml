@@ -10,6 +10,14 @@
   notify:
     - restart nginx
 
+- name: Copy secure.conf
+  template:
+    src: "secure.conf.j2"
+    dest: "/etc/nginx/secure.conf"
+    mode: 0644
+  notify:
+    - restart nginx
+
 - name: "[Nginx Provisioning] Create the configuration file for vHosts"
   template:
     src: "vhosts/{{ item }}"

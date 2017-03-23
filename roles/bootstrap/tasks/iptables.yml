@@ -1,0 +1,9 @@
+---
+- name: Create iptable rules
+  template:
+    src: "iptables/{{ item }}"
+    dest: /etc/iptables/{{ item }}
+    mode: 0644
+  with_items:
+    - rules.v4
+    - rules.v6

@@ -40,7 +40,7 @@ server {
     ssl_certificate_key      /etc/ssl/certs/ctnguyen.net/privkey.pem;
     ssl_trusted_certificate  /etc/ssl/certs/ctnguyen.net/fullchain.pem;
 
-    include /etc/nginx/ssl/secure.conf;
+    include /etc/nginx/secure.conf;
     #client_max_body_size 256m;
 
     add_header Strict-Transport-Security "max-age=31536000; includeSubdomains; preload";
