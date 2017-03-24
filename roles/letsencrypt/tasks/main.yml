@@ -31,6 +31,12 @@
     src: domains.j2
     dest: /etc/ssl/domains.txt
 
+- name: create hook script
+  become: yes
+  template:
+    src: hook_nginx.sh
+    dest: /opt/dehydrated.sh/hook_nginx.sh
+
 - name: create config.sh
   become: yes
   template:
