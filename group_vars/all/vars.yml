@@ -33,3 +33,4 @@ packages:
   - sudo
   - irssi
   - iptables-persistent
+  - xauth #needed for x11forwarding
