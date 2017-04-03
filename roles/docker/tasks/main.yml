@@ -1,0 +1,6 @@
+---
+- include: repository.yml
+  tags: docker
+
+- include: install.yml
+  tags: docker

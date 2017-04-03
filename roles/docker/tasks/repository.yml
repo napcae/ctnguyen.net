@@ -1,0 +1,19 @@
+---
+- name: ensure docker dependencies
+  apt:
+    pkg: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+
+- name: ensure APT offical docker key 
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+
+- name: ensure apt official docker repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"

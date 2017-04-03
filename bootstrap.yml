@@ -6,4 +6,5 @@
     - bootstrap
     - { role: letsencrypt, tags: letsencrypt }
     - { role: nginx, tags: nginx }
+    - { role: docker, tags: docker }
     - user

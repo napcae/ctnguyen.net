@@ -34,3 +34,8 @@ packages:
   - irssi
   - iptables-persistent
   - xauth #needed for x11forwarding
+  # packages for pip
+  - python-dev 
+  - build-essential
+  - python-pip
+  - deluged

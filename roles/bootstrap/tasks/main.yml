@@ -9,7 +9,7 @@
   tags: secure
 
 - include: packages.yml
-  tags: packages
+  tags: apt
 
 - include: locale.yml  
   tags: locale

@@ -1,0 +1,9 @@
+---
+- name: Install the docker packages
+  package: 
+    name: docker-ce
+    state: present
+
+- name: Install docker-compose
+  pip:
+    name: docker-compose

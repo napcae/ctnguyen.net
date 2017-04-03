@@ -4,3 +4,8 @@
     pkg: "{{ item }}" 
     state: installed
   with_items: "{{ packages }}"
+
+- name: Upgrade pip
+  pip:
+    name: pip      
+    extra_args: --upgrade
