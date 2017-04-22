@@ -38,4 +38,3 @@ packages:
   - python-dev 
   - build-essential
   - python-pip
-  - deluged
