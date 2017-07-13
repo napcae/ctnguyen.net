@@ -6,13 +6,12 @@ server {
     access_log /var/log/nginx/nettelbeckplatz.de/access.log;
     error_log  /var/log/nginx/nettelbeckplatz.de/error.log;
 
-    #location /.well-known/acme-challenge {
-    #      alias /etc/ssl/letsencrypt;
-    #}
-    #return 301 https://$host$request_uri;
+    location /.well-known/acme-challenge {
+          alias /etc/ssl/letsencrypt;
+    }
 
-        root   /var/web/nettelbeckplatz.de;
-        location / {
+    root   /var/web/nettelbeckplatz.de;
+    location / {
         index  index.php index.html index.htm;
     }
 

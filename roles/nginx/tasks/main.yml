@@ -17,6 +17,8 @@
     mode: 0644
   notify:
     - restart nginx
+  tags: 
+    - nginx-conf
 
 - name: "[Nginx Provisioning] Create the configuration file for vHosts"
   template:

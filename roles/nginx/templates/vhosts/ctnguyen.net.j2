@@ -12,11 +12,15 @@ server {
     location /.well-known/acme-challenge {
         alias /etc/ssl/letsencrypt;
     }
-    return 301 https://$http_host$request_uri;
+
+    location / {
+        rewrite     ^(.*)   https://$http_host$1 permanent;
+    }
     access_log /var/log/nginx/secure.log;
 }
 server {
     listen 443 ssl http2;
+    listen [::]:443;
     server_name ctnguyen.net ctnguyen.de www.ctnguyen.de napcae.de www.napcae.de v6.ctnguyen.net;
     
     ssl_certificate          /etc/ssl/certs/www.ctnguyen.net/fullchain.pem;
@@ -29,7 +33,7 @@ server {
 }
 server {
     listen 443 ssl http2 default;
-    listen [::]:443 ipv6only=on;
+    listen [::]:443;
     server_name www.ctnguyen.net;
 
 
