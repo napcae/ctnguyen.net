@@ -1,0 +1,13 @@
+version: '2'
+services:
+
+    sinusbot:
+      image: quay.io/galexrt/sinusbot:latest
+      command: /usr/sbin/unbound
+      volumes:
+        - ./scripts:/sinusbot/scripts
+        - ./data:/sinusbot/data
+        - ./config:/sinusbot/config
+      ports:
+        - 127.0.0.1:8087:8087
+      restart: always
